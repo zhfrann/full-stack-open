@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     participant browser
     participant server
@@ -8,3 +9,4 @@ sequenceDiagram
     deactivate server
 
     note over browser,server: This response will execute the event handler in spa.js file to prevent  <br/> the default handling of form's submit to avoid new GET request,<br/>  create new note, add to the notes list, rerenders <br/> the note list on the page, and send new note to the server
+```
