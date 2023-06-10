@@ -44,11 +44,57 @@ const PersonDetail = ({ person, deleteHandler }) => {
   )
 }
 
+const NotificationSuccess = ({ message }) => {
+  const notificationStyle = {
+    color: 'green',
+    background: 'lightgrey',
+    fontSize: 20,
+    borderStyle: 'solid',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+  }
+
+  if (message === null) {
+    return null;
+  }
+
+  return (
+    <div style={notificationStyle}>
+      {message}
+    </div>
+  )
+}
+
+const NotificationFailed = ({ message }) => {
+  const notificationStyle = {
+    color: 'red',
+    background: 'lightgrey',
+    fontSize: 20,
+    borderStyle: 'solid',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+  }
+
+  if (message === null) {
+    return null;
+  }
+
+  return (
+    <div style={notificationStyle}>
+      {message}
+    </div>
+  )
+}
+
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+  const [successMessage, setSuccessMessage] = useState(null)
+  const [failedMessage, setFailedMessage] = useState(null)
 
   useEffect(() => {
     personsService
@@ -72,6 +118,16 @@ const App = () => {
             setNewName('')
             setNewNumber('')
           })
+          .catch(error => {
+            setFailedMessage(`Information of ${newName} has already been removed from server`)
+            setNewName('')
+            setNewNumber('')
+            setPersons(persons.filter(person => person.name !== newName))
+            setTimeout(() => {
+              setFailedMessage(null)
+            }, 3000)
+
+          })
       } else {
         alert(`Add ${newName} canceled`)
         setNewName('')
@@ -92,6 +148,12 @@ const App = () => {
         setPersons(persons.concat(returnedPerson))
         setNewNumber('')
         setNewName('')
+
+        setSuccessMessage(`Added ${newName}`)
+
+        setTimeout(() => {
+          setSuccessMessage(null)
+        }, 3000)
       })
 
   }
@@ -124,6 +186,9 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+
+      <NotificationSuccess message={successMessage} />
+      <NotificationFailed message={failedMessage} />
 
       <Filter filter={filter} handler={inputFilterHandler} />
 
