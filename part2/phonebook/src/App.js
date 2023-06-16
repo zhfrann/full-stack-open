@@ -102,6 +102,9 @@ const App = () => {
       .then(allPersons => {
         setPersons(allPersons)
       })
+      .catch((error) => {
+        setFailedMessage(`${error}`)
+      })
   }, [])
 
   const addPerson = (event) => {
