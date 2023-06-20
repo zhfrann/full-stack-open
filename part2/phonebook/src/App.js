@@ -159,7 +159,7 @@ const App = () => {
         }, 3000)
       })
       .catch((error) => {
-        setFailedMessage(`${error}`)
+        setFailedMessage(`${error.response.data.error}`)
         setNewName('')
         setNewNumber('')
         setTimeout(() => {
@@ -177,7 +177,7 @@ const App = () => {
           setPersons(persons.filter(person => person.id !== id))
         })
         .catch((error) => {
-          setFailedMessage(`${error}`)
+          setFailedMessage(`${error.message}`)
           setNewName('')
           setNewNumber('')
           setTimeout(() => {
