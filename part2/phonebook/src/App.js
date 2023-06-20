@@ -158,7 +158,14 @@ const App = () => {
           setSuccessMessage(null)
         }, 3000)
       })
-
+      .catch((error) => {
+        setFailedMessage(`${error}`)
+        setNewName('')
+        setNewNumber('')
+        setTimeout(() => {
+          setFailedMessage(null)
+        }, 3000)
+      })
   }
 
   const deletePerson = ({ id, name }) => {
@@ -168,6 +175,14 @@ const App = () => {
         .then(deleteResponse => {
           alert('Delete Success')
           setPersons(persons.filter(person => person.id !== id))
+        })
+        .catch((error) => {
+          setFailedMessage(`${error}`)
+          setNewName('')
+          setNewNumber('')
+          setTimeout(() => {
+            setFailedMessage(null)
+          }, 3000)
         })
     }
   }
