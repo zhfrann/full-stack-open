@@ -1,0 +1,13 @@
+GET http://localhost:3003/api/blogs
+
+
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "Atomic Habbits",
+    "author": "James Clear",
+    "url": "https://www.gramedia.com/best-seller/review-buku-atomic-habits/",
+    "likes": 3
+}
