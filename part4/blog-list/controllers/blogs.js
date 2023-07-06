@@ -20,7 +20,20 @@ blogsRouter.get('/', (request, response) => {
 // })
 
 blogsRouter.post('/', (request, response) => {
-    const blog = new Blog(request.body)
+    const body = request.body
+
+    if (body.title === undefined || body.url === undefined) {
+        return response.status(400).send({ error: 'missing title or url' })
+    }
+
+    const newBlog = {
+        title: body.title,
+        author: body.author,
+        url: body.url,
+        likes: body.likes || 0
+    }
+
+    const blog = new Blog(newBlog)
 
     blog.save()
         .then(savedBlog => {
