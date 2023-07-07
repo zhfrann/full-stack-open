@@ -28,12 +28,12 @@ blogSchema.set('toJSON', {
     }
 })
 
-// const Blog = mongoose.model('Blog', blogSchema)
+const Blog = mongoose.model('Blog', blogSchema)
 
 // fetching database
-// Blog.find({}).then(blogs => {
-//     blogs.forEach(blog => {
-//         logger.info(blog)
-//         mongoose.connection.close()
-//     })
-// })
+Blog.find({}).then(blogs => {
+    blogs.forEach(blog => {
+        logger.info(blog)
+        mongoose.connection.close()
+    })
+})
