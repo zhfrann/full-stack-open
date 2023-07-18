@@ -11,3 +11,32 @@ Content-Type: application/json
     "url": "https://www.gramedia.com/best-seller/review-buku-atomic-habits/",
     "likes": 3
 }
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhlbGxhcyIsImlkIjoiNjRiMTExNDFhYTFiMzRkMmQ1NGMxODdlIiwiaWF0IjoxNjg5NTE0MTg3fQ.gQl1R8Nct7V7kDBbmGL7ToJxAF3iIMjbM1WiCCbGezo
+
+{
+    "title": "Desain Proses #4 - Prototype",
+    "author": "Briandito Priambodo",
+    "url": "https://medium.com/belajar-desain/desain-proses-4-prototype-bf9b370108fe",
+    "likes": 7
+}
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InpoZnJhbiIsImlkIjoiNjRiMTExM2NhYTFiMzRkMmQ1NGMxODdjIiwiaWF0IjoxNjg5NTc0NzUzLCJleHAiOjE2ODk1NzgzNTN9.9N2z-Vbr9xKvxs4Wz9LK-smTlbGTq-to4oTLCIDXDys
+
+{
+    "title": "Dummy blog",
+    "author": "Dummy",
+    "url": "https://github.com/zhfrann",
+    "likes": 19
+}
+
+
+
+###
+DELETE http://localhost:3003/api/blogs/64b4dd70c090b40a69dd3a46
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InpoZnJhbiIsImlkIjoiNjRiMTExM2NhYTFiMzRkMmQ1NGMxODdjIiwiaWF0IjoxNjg5NTc0NzUzLCJleHAiOjE2ODk1NzgzNTN9.9N2z-Vbr9xKvxs4Wz9LK-smTlbGTq-to4oTLCIDXDys

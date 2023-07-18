@@ -49,4 +49,22 @@ const initialBlogs = [
     }
 ]
 
-module.exports = { initialBlogs }
+const initialUsers = [
+    {
+        'username': 'zhfran',
+        'name': 'Muhammad Zhafran Ilham',
+        'id': '64b1113caa1b34d2d54c187c'
+    },
+    {
+        'username': 'hellas',
+        'name': 'Arto Hellas',
+        'id': '64b11141aa1b34d2d54c187e'
+    },
+    {
+        'username': 'mluukkai',
+        'name': 'Matti Luukkainen',
+        'id': '64b11143aa1b34d2d54c1880'
+    }
+]
+
+module.exports = { initialBlogs, initialUsers }
