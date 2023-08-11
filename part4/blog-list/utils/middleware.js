@@ -15,6 +15,7 @@ const userExtractor = (request, response, next) => {
     if (decodedToken) {
         request.user = decodedToken.id
     }
+    console.log('from middleware, request.user', request.user)
     next()
 }
 
