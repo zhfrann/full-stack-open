@@ -81,12 +81,32 @@ const App = () => {
     }
   }
 
+  const likesHandler = async (id) => {
+    const blog = blogs.find(blog => blog.id === id)
+    const changedBlog = { ...blog, user: blog.user.id, likes: blog.likes + 1 }
+    delete changedBlog.id
+
+    try {
+      const updatedBlog = await blogService.update(id, changedBlog)
+      setBlogs(blogs.map(blog => blog.id !== id ? blog : updatedBlog))
+    } catch (error) {
+      console.log(error.message)
+      console.log(error.response.data.error)
+      setFailedMessage(error.response.data.error)
+      setTimeout(() => {
+        setFailedMessage(null)
+      }, 5000)
+    }
+  }
+
   let message
   if (successMessage) {
     message = <SuccessMessage message={successMessage} />
   } else if (failedMessage) {
     message = <FailedMessage message={failedMessage} />
   }
+
+  const sortedBlog = blogs.sort((a, b) => b.likes - a.likes)
 
   if (user) {
     return (
@@ -107,9 +127,8 @@ const App = () => {
           <BlogForm createBlog={createBlog} />
         </Togglable>
 
-
-        {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog} />
+        {sortedBlog.map(blog =>
+          <Blog key={blog.id} blog={blog} likesHandler={likesHandler} user={user} />
         )}
       </div>
     )
