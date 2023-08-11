@@ -1,10 +1,20 @@
 import { useState } from "react"
 
-const Blog = ({ blog, likesHandler, user }) => {
+const Blog = ({ blog, likesHandler, deleteHandler, user }) => {
   const [visible, setVisible] = useState(false)
 
   const toggleVisibility = () => {
     setVisible(!visible)
+  }
+
+  const deleteBlog = (blog) => {
+    const deleteConfirm = window.confirm(`remove blog '${blog.title}' by ${blog.author}`)
+
+    if (deleteConfirm) {
+      deleteHandler(blog.id)
+    } else {
+      window.alert('remove cancel')
+    }
   }
 
   const blogStyle = {
@@ -37,7 +47,7 @@ const Blog = ({ blog, likesHandler, user }) => {
           <button onClick={() => likesHandler(blog.id)} style={{ marginLeft: '5px' }}>like</button>
         </div>
         <div>{blog.author}</div>
-        {blogUser && <button onClick={() => window.confirm(`remove blog '${blog.title}' by ${blog.author}`)}>remove</button>}
+        {blogUser && <button onClick={() => deleteBlog(blog)}>remove</button>}
       </div>
     </div>
   )
